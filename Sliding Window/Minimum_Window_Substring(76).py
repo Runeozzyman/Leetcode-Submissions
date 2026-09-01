@@ -1,7 +1,7 @@
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
 
-        l, r = 0, 0
+        l = 0
         
         have = defaultdict(int)
         have_count = 0 #count how many char freqs we've met
@@ -23,9 +23,8 @@ class Solution:
                     have_count += 1
 
             while have_count == need_count:
-                curr_string = s[l:r+1]
-                if len(curr_string) < minLen:
-                    minString = curr_string
+                if r-l+1 < minLen:
+                    minString = s[l:r+1]
                     minLen = len(minString)
 
                 char = s[l]
