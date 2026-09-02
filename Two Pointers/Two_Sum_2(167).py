@@ -1,9 +1,20 @@
-class Solution(object):
-    def twoSum(self, numbers, target):
+class Solution:
+    def twoSum(self, numbers: List[int], target: int) -> List[int]:
 
-        dic = {}
+        start = 0
+        end = len(numbers) - 1
 
-        for i,v in enumerate(numbers):
-            if target-v in dic:
-                return[dic[target-v]+1,i+1]
-            dic[v] = i
+        while start < end:
+
+            curr_sum = numbers[start] + numbers[end]
+
+            if curr_sum == target:
+                return [start+1, end+1]
+            
+            elif curr_sum < target:
+                start += 1
+            
+            else:
+                end -= 1
+            
+        return [-1, -1]
