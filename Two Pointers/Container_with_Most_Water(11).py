@@ -1,15 +1,20 @@
-class Solution(object):
-    def maxArea(self, height):
-        lp = 0
-        rp = len(height) - 1
-        maxArea = 0 
-        
-        while (lp < rp):
-            area = min(height[lp],height[rp])*(rp-lp)
-            if area > maxArea:
-                maxArea = area
-            if(height[lp] <= height[rp]):
-                lp += 1
-            elif(height[rp] < height[lp]):
-                rp -= 1
-        return maxArea
+class Solution:
+    def maxArea(self, height: List[int]) -> int:
+
+        left = 0
+        right = len(height) - 1
+        mostWater = 0
+
+        while left < right:
+            h = min(height[left], height[right])
+            l = right - left
+            curr_water = l*h
+            mostWater = max(mostWater, curr_water)
+
+            if height[left] < height[right]:
+                left  += 1
+            
+            else:
+                right -= 1
+            
+        return mostWater
